@@ -1,8 +1,8 @@
 import UserType from "../types"
+import UpdateUserModal from "./UpdateUserModal";
 import crud from "../utils/crud";
 import { UserContext } from "../context/userContext";
-import UpdateUserModal from "./UpdateUserModal";
-import { useContext, useState } from "react";
+import {useContext, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
 import { FaPhone } from "react-icons/fa6";
@@ -10,6 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 import { LuMapPin } from "react-icons/lu";
 import { FaHome } from "react-icons/fa";
+import ConfirmModal from "./ConfirmModal";
 
 interface ProfileModalProps {
     selectedUser: UserType
@@ -23,6 +24,12 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
     const { deleteUser } = useContext(UserContext)
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
+    const [confirmModal, setConfirmModal] = useState(false)
+
+    const confirmModalOpen = () => {
+        setConfirmModal(true)
+        
+    }
 
     const deleteHandler = async () => {
         const res = await crud.deleteUser(selectedUser.id)
@@ -30,7 +37,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             deleteUser(selectedUser.id)
             closeModal()
         }
-    }
+    } 
 
     const openUpdateModal = () => {
         setIsUpdateModalOpen(true)
@@ -79,7 +86,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
                         <MdDelete
                             className="cursor-pointer"
-                            onClick={deleteHandler}
+                            onClick={confirmModalOpen}
                             size={30}
                         />
                         <MdModeEditOutline
@@ -96,6 +103,13 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                     <UpdateUserModal
                         user={selectedUser}
                         closeUpdateModal={closeUpdateModal}
+                    />
+                )
+            }
+            {
+                confirmModal && (
+                    <ConfirmModal
+                        deleteHandler={deleteHandler}
                     />
                 )
             }

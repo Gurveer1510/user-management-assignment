@@ -12,18 +12,18 @@ interface UserContextType {
 
 const UserContext = createContext<UserContextType>({
     users: [],
-    addUsers: () => {},
-    addNewUser: () => {},
-    deleteUser: () => {},
-    updateUser: () => {}
+    addUsers: () => { },
+    addNewUser: () => { },
+    deleteUser: () => { },
+    updateUser: () => { }
 })
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const [users, setUsers] = useState<UserType[]>([])
-    const addUsers = (users:  UserType[]) => {
+    const addUsers = (users: UserType[]) => {
         setUsers(users)
     }
-    const addNewUser = (newUser : UserType) => {
+    const addNewUser = (newUser: UserType) => {
         setUsers(prev => [...prev, newUser])
     }
 
@@ -36,17 +36,17 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const updateUser = (id: string, updatedUser: UserType) => {
-        const updatedUsers = users.map((user) => 
-            user.id === id 
-                ? { ...user, ...updatedUser, address: { ...user.address, ...updatedUser.address } } 
+        const updatedUsers = users.map((user) =>
+            user.id === id
+                ? { ...user, ...updatedUser, address: { ...user.address, ...updatedUser.address } }
                 : user
         );
         setUsers(updatedUsers);
     };
-    
+
 
     return (
-        <UserContext.Provider value={{users, addUsers, addNewUser, deleteUser, updateUser}}>
+        <UserContext.Provider value={{ users, addUsers, addNewUser, deleteUser, updateUser }}>
             {children}
         </UserContext.Provider>
     )
