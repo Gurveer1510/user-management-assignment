@@ -54,7 +54,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                 <div className="bg-gray-50 p-6 sm:p-8 flex justify-between items-center">
                     <div className="flex items-center space-x-4">
                         <img
-                            src="/src/assets/placeholder.jpg"
+                            src="/public/placeholder.jpg"
                             alt="avatar"
                             className="h-24 w-24 rounded-full border-4 border-white shadow-lg"
                         />
