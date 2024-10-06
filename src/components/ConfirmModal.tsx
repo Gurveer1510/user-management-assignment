@@ -1,11 +1,20 @@
 
 interface ConfirmModalProps {
     deleteHandler: () => void
+    closeModal: () => void
+    closeConfirmModal: () => void
 }
 
 const ConfirmModal : React.FC<ConfirmModalProps> = ({
-    deleteHandler
+    deleteHandler,
+    closeConfirmModal,
+    closeModal
 }) => {
+
+    const onClose = () => {
+        closeConfirmModal()
+        closeModal()
+    }
 
     return (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4'>
@@ -18,7 +27,7 @@ const ConfirmModal : React.FC<ConfirmModalProps> = ({
                     >
                         Delete
                     </button>
-                    <button className='font-semibold rounded-lg bg-slate-200 px-2 py-1'>
+                    <button onClick={onClose} className='font-semibold rounded-lg bg-slate-200 px-2 py-1'>
                         Cancel
                     </button>
                     

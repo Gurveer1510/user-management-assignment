@@ -28,8 +28,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     const [confirmModal, setConfirmModal] = useState(false)
 
     const confirmModalOpen = () => {
-        setConfirmModal(true)
-        
+        setConfirmModal(true)    
+    }
+
+    const confirmModalClose = () => {
+        setConfirmModal(false)
     }
 
     const deleteHandler = async () => {
@@ -113,6 +116,8 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             {
                 confirmModal && (
                     <ConfirmModal
+                    closeConfirmModal={confirmModalClose}
+                    closeModal={closeModal}
                         deleteHandler={deleteHandler}
                     />
                 )
