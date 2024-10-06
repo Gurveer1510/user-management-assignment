@@ -33,17 +33,18 @@ const TableView = ({
 
             <div className="container mx-auto py-10">
                 <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-                    <div className="px-4 py-2 flex justify-between items-center">
+                    <div className="px-4 py-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sticky left-0">
                         <h2 className="text-xl font-semibold text-gray-900">
                             List of Users
                         </h2>
-                        <button className="px-3 py-2 rounded-lg bg-gray-600 text-white text-lg" onClick={openForm}>
+                        <button className="px-3 py-2 rounded-lg bg-gray-600 text-white self-start sm:self-auto " onClick={openForm}>
                             <p className="flex items-center gap-x-2">
                                 <FaPlus size={16} />
                                 Add User
                             </p>
                         </button>
                     </div>
+                    <div className="overflow-x-auto">
                     <table className="min-w-full table-auto">
                         <thead className="bg-gray-50">
                             <tr>
@@ -74,6 +75,8 @@ const TableView = ({
                             ))}
                         </tbody>
                     </table>
+                    </div>
+                    
                 </div>
 
                 {isModalOpen && selectedUser && (

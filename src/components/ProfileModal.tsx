@@ -6,6 +6,7 @@ import {useContext, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
 import { FaPhone } from "react-icons/fa6";
+import { toast } from "react-toastify";
 import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 import { LuMapPin } from "react-icons/lu";
@@ -36,6 +37,9 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         if (res) {
             deleteUser(selectedUser.id)
             closeModal()
+            toast.error("User deleted",{
+                position: "bottom-left"
+            })
         }
     } 
 

@@ -3,6 +3,7 @@ import { FormFields } from "../types"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useContext } from "react"
 import { UserContext } from "../context/userContext"
+import { toast } from "react-toastify"
 import UserType from "../types"
 import InputBox from "./InputBox"
 
@@ -47,6 +48,9 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
         }
         updateUser(user.id, body)
         closeUpdateModal()
+        toast.success("user updated",{
+            position: "bottom-left"
+        })
     }
 
     return (

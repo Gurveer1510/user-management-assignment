@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import crud from "../utils/crud";
+import { toast } from "react-toastify";
 import InputBox from "./InputBox";
 
 interface CreateUserModalProps {
@@ -47,6 +48,9 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
         const res = await crud.createUser(body)
         addNewUser(res)
         closeForm()
+        toast.success("User created successfully",{
+            position: "bottom-left"
+        })
     }
 
     return (
